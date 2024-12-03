@@ -1,26 +1,47 @@
 import React from 'react';
 import { useCarrinho } from './CarrinhoContext';
+import { Container, Typography, Box, Button, Card, CardContent, CardActions, CardMedia } from '@mui/material';
 
 const Carrinho = () => {
     const { carrinho, removerDoCarrinho, valorTotal } = useCarrinho();
 
     return (
-        <div style={{ padding: '20px' }}>
-            <h2>Carrinho de Compras</h2>
+        <Container style={{ padding: '20px' }}>
+            <Typography variant="h4" gutterBottom>Carrinho de Compras</Typography>
             {carrinho.length === 0 ? (
-                <p>Seu carrinho está vazio.</p>
+                <Typography variant="h6" color="textSecondary">Seu carrinho está vazio.</Typography>
             ) : (
-                <div>
+                <Box>
                     {carrinho.map(produto => (
-                        <div key={produto.id} style={{ marginBottom: '10px' }}>
-                            <p>{produto.nome} - {produto.preco}</p>
-                            <button onClick={() => removerDoCarrinho(produto.id)}>Remover</button>
-                        </div>
+                        <Card key={produto.id} sx={{ display: 'flex', marginBottom: '10px' }}>
+                            <CardMedia
+                                component="img"
+                                sx={{ width: 151 }}
+                                image={produto.imagemUrl}
+                                alt={produto.nome}
+                            />
+                            <CardContent>
+                                <Typography component="div" variant="h5">{produto.nome}</Typography>
+                                <Typography variant="body2" color="textSecondary" component="div">
+                                    {produto.descricao}
+                                </Typography>
+                                <Typography variant="h6" color="textPrimary" component="div">
+                                    R${produto.preco.toFixed(2)}
+                                </Typography>
+                            </CardContent>
+                            <CardActions>
+                                <Button size="small" color="secondary" variant="contained" onClick={() => removerDoCarrinho(produto.id)}>
+                                    Remover
+                                </Button>
+                            </CardActions>
+                        </Card>
                     ))}
-                    <h3>Total: {valorTotal}</h3>
-                </div>
+                    <Typography variant="h5" component="div" style={{ marginTop: '20px' }}>
+                        Total: R${valorTotal.toFixed(2)}
+                    </Typography>
+                </Box>
             )}
-        </div>
+        </Container>
     );
 };
 
