@@ -24,11 +24,11 @@ const ProdutoForm = ({ produtoAtual, onSave, onCancel }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (produto.id) {
-            axios.put(`http://localhost:8080/api/produtos/${produto.id}`, produto)
+            axios.put(`https://marketplace-28r6.onrender.com/api/produtos/${produto.id}`, produto)
                 .then(response => onSave(response.data))
                 .catch(error => console.error("Erro ao atualizar produto: ", error));
         } else {
-            axios.post('http://localhost:8080/api/produtos', produto)
+            axios.post('hhttps://marketplace-28r6.onrender.com/api/produtos', produto)
                 .then(response => onSave(response.data))
                 .catch(error => console.error("Erro ao criar produto: ", error));
         }

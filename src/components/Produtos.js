@@ -12,7 +12,7 @@ const Produtos = () => {
     const { adicionarAoCarrinho } = useCarrinho();
 
     React.useEffect(() => {
-        axios.get('http://localhost:8080/api/produtos')
+        axios.get('https://marketplace-28r6.onrender.com/api/produtos')
             .then(response => setProdutos(response.data))
             .catch(error => console.error("Erro: ", error));
     }, []);
@@ -31,7 +31,7 @@ const Produtos = () => {
     };
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:8080/api/produtos/${id}`)
+        axios.delete(`https://marketplace-28r6.onrender.com/api/produtos/${id}`)
             .then(() => setProdutos(prev => prev.filter(produto => produto.id !== id)))
             .catch(error => console.error("Erro ao deletar produto: ", error));
     };
