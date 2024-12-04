@@ -28,7 +28,7 @@ const ProdutoForm = ({ produtoAtual, onSave, onCancel }) => {
                 .then(response => onSave(response.data))
                 .catch(error => console.error("Erro ao atualizar produto: ", error));
         } else {
-            axios.post('hhttps://marketplace-28r6.onrender.com/api/produtos', produto)
+            axios.post('https://marketplace-28r6.onrender.com/api/produtos', produto)
                 .then(response => onSave(response.data))
                 .catch(error => console.error("Erro ao criar produto: ", error));
         }
